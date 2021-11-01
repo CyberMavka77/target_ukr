@@ -50,22 +50,26 @@ def get_words(f, letters):
     return words
 
 def check_user_words(user_words, language_part, letters, dict_of_words):
+    """
+    Checks user words and returns game results
+    """
     part_dict_words = []
     user_correct = []
     missed_words = []
     for dict_word in dict_of_words:
         if dict_word[1] == language_part:
             part_dict_words.append(dict_word[0])
-    for user_word in user_words:
-        flag = False
-        for lett in letters:
-            if user_word[0] == lett:
-                flag = True
-        if flag and (user_word in part_dict_words):
-            user_correct.append(user_word)
+    if user_words:
+        for user_word in user_words:
+            flag = False
+            for lett in letters:
+                if user_word[0] == lett:
+                    flag = True
+            if flag and (user_word in part_dict_words):
+                user_correct.append(user_word)
+    else:
+        user_correct = []
     for word in part_dict_words:
         if word not in user_correct:
             missed_words.append(word)
-    return user_correct, missed_words
-
-
+    return (user_correct, missed_words)

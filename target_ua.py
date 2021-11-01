@@ -59,7 +59,7 @@ def check_user_words(user_words, language_part, letters, dict_of_words):
     for dict_word in dict_of_words:
         if dict_word[1] == language_part:
             part_dict_words.append(dict_word[0])
-    if user_words:
+    if len(user_words):
         for user_word in user_words:
             flag = False
             for lett in letters:

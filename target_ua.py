@@ -1,6 +1,3 @@
-# with open('base.lst', 'r') as output_file:
-#     all_of_it = output_file.read()
-# print(all_of_it)
 """
 Module for target game ukrainian version
 """
@@ -51,3 +48,24 @@ def get_words(f, letters):
             if words_word and words_part:
                 words.append((words_word, words_part))
     return words
+
+def check_user_words(user_words, language_part, letters, dict_of_words):
+    part_dict_words = []
+    user_correct = []
+    missed_words = []
+    for dict_word in dict_of_words:
+        if dict_word[1] == language_part:
+            part_dict_words.append(dict_word[0])
+    for user_word in user_words:
+        flag = False
+        for lett in letters:
+            if user_word[0] == lett:
+                flag = True
+        if flag and (user_word in part_dict_words):
+            user_correct.append(user_word)
+    for word in part_dict_words:
+        if word not in user_correct:
+            missed_words.append(word)
+    return user_correct, missed_words
+
+
